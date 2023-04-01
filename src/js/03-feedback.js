@@ -11,8 +11,6 @@ form.addEventListener('input', throttle(onFormInput, 500));
 
 function saveMessage(evt) {
   evt.preventDefault();
-  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(settings));
-  updateSettings();
   form.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
   console.log(settings);
