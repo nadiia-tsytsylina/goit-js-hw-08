@@ -18,6 +18,7 @@ function saveMessage(evt) {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(settings));
   updateSettings();
   form.reset();
+  localStorage.removeItem(LOCALSTORAGE_KEY);
   console.log(settings);
 }
 
