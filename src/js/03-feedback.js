@@ -3,15 +3,11 @@ const form = document.querySelector('.feedback-form');
 const email = document.querySelector('input');
 const message = document.querySelector('textarea');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
-const settings = {
-  email: '',
-  message: '',
-};
+const settings = {};
 
 updateSettings();
 form.addEventListener('submit', saveMessage);
-email.addEventListener('input', throttle(onEmailInput, 500));
-message.addEventListener('input', throttle(onMessageInput, 500));
+form.addEventListener('input', throttle(onFormInput, 500));
 
 function saveMessage(evt) {
   evt.preventDefault();
@@ -22,15 +18,8 @@ function saveMessage(evt) {
   console.log(settings);
 }
 
-function onEmailInput(evt) {
-  const value = evt.target.value;
-  settings.email = value;
-  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(settings));
-}
-
-function onMessageInput(evt) {
-  const value = evt.target.value;
-  settings.message = value;
+function onFormInput(evt) {
+  settings[evt.target.name] = evt.target.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(settings));
 }
 
