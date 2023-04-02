@@ -24,18 +24,12 @@ function onFormInput(evt) {
 function updateSettings() {
   const savedData = localStorage.getItem(LOCALSTORAGE_KEY);
   if (savedData) {
-    settings.email = JSON.parse(savedData).email;
-    settings.message = JSON.parse(savedData).message;
+    const data = JSON.parse(savedData);
 
-    if (settings.email === undefined) {
-      message.value = settings.message;
-      email.value = '';
-    } else if (settings.message === undefined) {
-      email.value = settings.email;
-      message.value = '';
-    } else {
-      email.value = settings.email;
-      message.value = settings.message;
-    }
+    settings.email = data.email ?? '';
+    settings.message = data.message ?? '';
+
+    message.value = settings.message;
+    email.value = settings.email;
   }
 }
