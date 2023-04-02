@@ -26,7 +26,16 @@ function updateSettings() {
   if (savedData) {
     settings.email = JSON.parse(savedData).email;
     settings.message = JSON.parse(savedData).message;
-    email.value = settings.email;
-    message.value = settings.message;
+
+    if (settings.email === undefined) {
+      message.value = settings.message;
+      email.value = '';
+    } else if (settings.message === undefined) {
+      email.value = settings.email;
+      message.value = '';
+    } else {
+      email.value = settings.email;
+      message.value = settings.message;
+    }
   }
 }
